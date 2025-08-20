@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="form-group">
+    <input type="password" placeholder="新密码" model:value="{{newPassword}}" />
+  </view>
+  <button type="primary" bindtap="changePassword">确认修改</button>
+</view>

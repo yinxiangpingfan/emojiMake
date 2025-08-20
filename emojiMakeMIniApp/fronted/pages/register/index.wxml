@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="logo-container">
+    <image class="logo" src="/images/logo.png" mode="widthFix" />
+    <text class="title">新用户注册</text>
+    <text class="subtitle">创建您的账户，开始制作表情包</text>
+  </view>
+
+  <view class="form">
+    <view class="form-item">
+      <image class="icon" src="/images/phone-icon.png" />
+      <input class="input" type="number" placeholder="请输入手机号" value="{{phone}}" bindinput="onPhoneInput" maxlength="11" />
+    </view>
+    <view class="form-item">
+      <image class="icon" src="/images/password-icon.png" />
+      <input class="input" password="{{!showPassword}}" placeholder="请输入密码（至少8位）" value="{{password}}" bindinput="onPasswordInput" />
+      <text class="toggle-password" bindtap="togglePassword">{{showPassword ? '隐藏' : '显示'}}</text>
+    </view>
+    <view class="form-item">
+      <image class="icon" src="/images/password-icon.png" />
+      <input class="input" password="{{!showConfirmPassword}}" placeholder="请再次输入密码" value="{{confirmPassword}}" bindinput="onConfirmPasswordInput" />
+      <text class="toggle-password" bindtap="toggleConfirmPassword">{{showConfirmPassword ? '隐藏' : '显示'}}</text>
+    </view>
+  </view>
+
+  <view class="agreement">
+    <checkbox-group bindchange="onAgreementChange">
+      <label class="checkbox-item">
+        <checkbox value="agree" checked="{{agreedToTerms}}" />
+        <text class="agreement-text">我已阅读并同意</text>
+        <text class="agreement-link">《用户协议》</text>
+        <text class="agreement-text">和</text>
+        <text class="agreement-link">《隐私政策》</text>
+      </label>
+    </checkbox-group>
+  </view>
+
+  <button class="register-btn" type="primary" bindtap="register" disabled="{{!canRegister}}">注 册</button>
+
+  <view class="links">
+    <navigator url="/pages/login/index" class="link">已有账号？立即登录</navigator>
+  </view>
+</view>

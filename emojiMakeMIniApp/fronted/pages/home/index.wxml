@@ -1,0 +1,88 @@
+<!--pages/home/index.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="header-title">表情包生成器</text>
+  </view>
+  
+  <view class="form-container">
+    <view class="mode-switcher">
+      <view class="mode-tab {{currentMode === 'image_to_video' ? 'active' : ''}}" data-mode="image_to_video" bindtap="switchMode">图生表情</view>
+      <view class="mode-tab {{currentMode === 'text_to_video' ? 'active' : ''}}" data-mode="text_to_video" bindtap="switchMode">文生表情</view>
+      <view class="mode-tab {{currentMode === 'text_to_video_online' ? 'active' : ''}}" data-mode="text_to_video_online" bindtap="switchMode">文生表情（联网）</view>
+    </view>
+
+    <!-- 图生视频 -->
+    <view wx:if="{{currentMode === 'image_to_video'}}">
+      <view class="section">
+        <text class="section-title">1. 选择图片</text>
+        <view class="image-uploader" bindtap="chooseImage">
+          <image wx:if="{{tempFilePath}}" class="preview-image" src="{{tempFilePath}}" mode="aspectFit"></image>
+          <view wx:else class="upload-placeholder">
+            <text class="upload-icon">+</text>
+            <text class="upload-text">点击上传图片</text>
+          </view>
+        </view>
+      </view>
+      <view class="section">
+        <text class="section-title">2. 输入描述</text>
+        <textarea class="prompt-input" placeholder="输入想要的视频效果，例如：一只猫在打篮球" value="{{prompt}}" bindinput="onPromptInput"></textarea>
+      </view>
+      <view class="section">
+        <text class="section-title">反向提示词 (可选)</text>
+        <textarea class="prompt-input" placeholder="输入不希望在视频中出现的内容" value="{{negativePrompt}}" bindinput="onNegativePromptInput"></textarea>
+      </view>
+    </view>
+
+    <!-- 普通文生视频 -->
+    <view wx:if="{{currentMode === 'text_to_video'}}">
+      <view class="section">
+        <text class="section-title">1. 输入描述</text>
+        <textarea class="prompt-input" placeholder="输入想要的视频效果，例如：一只猫在打篮球" value="{{prompt}}" bindinput="onPromptInput"></textarea>
+      </view>
+      <view class="section">
+        <text class="section-title">反向提示词 (可选)</text>
+        <textarea class="prompt-input" placeholder="输入不希望在视频中出现的内容" value="{{negativePrompt}}" bindinput="onNegativePromptInput"></textarea>
+      </view>
+    </view>
+    
+    <!-- 文生视频（联网） -->
+    <view wx:if="{{currentMode === 'text_to_video_online'}}">
+      <view class="section">
+        <view class="notice-container">
+          <text class="notice">目前联网生成是根据角色，通过联网，用文本描述样貌之后进行生成。效果远不及</text>
+          <text class="notice-highlight">图生表情</text>
+          <text class="notice">。建议通过</text>
+          <text class="notice-highlight">图生表情</text>
+          <text class="notice">来获取想要的角色表情包</text>
+        </view>
+      </view>
+      <view class="section">
+        <text class="section-title">1. 角色</text>
+        <textarea class="prompt-input" placeholder="输入视频的核心角色名称，例如：孙悟空、马里奥" value="{{role}}" bindinput="onRoleInput"></textarea>
+      </view>
+      <view class="section">
+        <text class="section-title">2. 来源（可选）</text>
+        <textarea class="prompt-input" placeholder="角色的来源，例如：七龙珠、任天堂游戏" value="{{source}}" bindinput="onSourceInput"></textarea>
+      </view>
+      <view class="section">
+        <text class="section-title">3. 动作</text>
+        <textarea class="prompt-input" placeholder="角色执行的核心动作，例如：正在跳舞、正在奔跑" value="{{action}}" bindinput="onActionInput"></textarea>
+      </view>
+    </view>
+
+    <button class="generate-btn" type="primary" bindtap="generateVideo" loading="{{loading}}">
+      {{loading ? '生成中...' : '生成表情包'}}
+    </button>
+  </view>
+
+  <view class="result-container" wx:if="{{resultVideoUrl}}">
+    <text class="section-title">生成结果</text>
+    <image class="result-video" src="{{resultVideoUrl}}" mode="widthFix"></image>
+    <button class="save-btn" bindtap="saveVideo">保存到相册</button>
+    <button class="share-btn" bindtap="shareToFriend">分享给好友</button>
+    <text class="share-notice">点击分享给好友后进入图片长按分享</text>
+  </view>
+  
+  <!-- 用于GIF压缩的canvas -->
+  <canvas class="hidden-canvas" canvas-id="compressCanvas" style="width: 240px; height: 240px;"></canvas>
+</view>

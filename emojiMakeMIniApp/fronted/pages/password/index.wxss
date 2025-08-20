@@ -1,0 +1,12 @@
+.container {
+  padding: 20px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+input {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}

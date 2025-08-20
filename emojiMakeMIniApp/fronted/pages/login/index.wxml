@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="logo-container">
+    <image class="logo" src="/images/logo.png" mode="widthFix" />
+    <text class="title">欢迎登录</text>
+  </view>
+
+  <view class="form">
+    <view class="form-item">
+      <image class="icon" src="/images/phone-icon.png" />
+      <input class="input" type="text" placeholder="请输入手机号" model:value="{{phone}}" />
+    </view>
+    <view class="form-item">
+      <image class="icon" src="/images/password-icon.png" />
+      <input class="input" password="{{!showPassword}}" placeholder="请输入密码" model:value="{{password}}" />
+      <text class="toggle-password" bindtap="togglePassword">{{showPassword ? '隐藏' : '显示'}}</text>
+    </view>
+  </view>
+
+  <button class="login-btn" type="primary" bindtap="login">登 录</button>
+
+  <view class="links">
+    <navigator url="/pages/register/index" class="link">新用户注册</navigator>
+  </view>
+</view>
