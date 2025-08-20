@@ -93,6 +93,9 @@ debug.txt
 *.jks
 local.properties
 
+# 允许 APK 文件上传到 Release
+!*.apk
+
 
 # 其他
 *.pid
