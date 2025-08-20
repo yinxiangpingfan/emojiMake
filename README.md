@@ -56,10 +56,11 @@ ai:
 jwt:
   secret: "secret_use_for_jwt"
 server:
-  port: "具体值"ˆ
+  port: "具体值"
   host: "具体值"
 ```
-运行```go run .```
+之后获取自签证书，放在`backend`目录下，包含cert.pem 和 key.pem文件，运行```go run .```
+
 
 - **web前端**： 进入VCCG文件夹
 
