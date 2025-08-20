@@ -49,7 +49,7 @@
 
 **2.部署方法**
 
--**后端**：首先进入backend 新建`config.yaml`文件，输入
+- **后端**：首先进入backend 新建`config.yaml`文件，输入
 ```
 ai:
   key: "阿里云百炼的key"
@@ -61,7 +61,7 @@ server:
 ```
 运行```go run .```
 
--**web前端**： 进入VCCG文件夹
+- **web前端**： 进入VCCG文件夹
 
 安装依赖
 
@@ -74,9 +74,9 @@ npm install
 ```bash
 npm run dev
 ```
--**安卓APP**:打开`Android studio`打开`emojiMakeApp`文件夹build
+- **安卓APP**:打开`Android studio`打开`emojiMakeApp`文件夹build
 
--**微信小程序**:目前小程序中只完成了页面的构建以及登陆与注册的接口调用。打开微信开发者工具，导入`emojiMakeMiniApp`，之后编译
+- **微信小程序**:目前小程序中只完成了页面的构建以及登陆与注册的接口调用。打开微信开发者工具，导入`emojiMakeMiniApp`，之后编译
 
 ---
 
