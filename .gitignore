@@ -4,6 +4,8 @@ config.yaml
 *.tmp
 *.temp
 .tmp/
+cert.pem
+key.pem
 temp/
 .cache/
 cache/
